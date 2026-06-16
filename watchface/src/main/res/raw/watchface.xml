@@ -8,22 +8,22 @@
 
         <!-- 1A. DIGITAL CLOCK - HOURS (Left Anchor) -->
         <!-- Sits from x=35 to x=215 (Width: 180). Right aligned to touch the colon container -->
-        <DigitalClock x="35" y="140" width="180" height="160">
+        <DigitalClock x="10" y="150" width="200" height="160">
             <!-- Active Hour Display -->
-            <TimeText format="hh" hourFormat="SYNC_TO_DEVICE" align="END" x="0" y="0" width="180" height="160" alpha="255">
+            <TimeText format="hh" hourFormat="SYNC_TO_DEVICE" align="END" x="0" y="0" width="195" height="160" alpha="255">
                 <Variant mode="AMBIENT" target="alpha" value="0"/>
-                <Font family="oswald_regular_caps" size="160" weight="BOLD" width="ULTRA_EXPANDED" color="#ffffff8f"/>
+                <Font family="outfit_regular_caps" size="160" weight="BOLD"  color="#ffffff8f"/>
             </TimeText>
             <!-- Ambient Always-On Hour Display -->
-            <TimeText format="hh" hourFormat="SYNC_TO_DEVICE" align="END" x="0" y="0" width="180" height="160" alpha="0">
+            <TimeText format="hh" hourFormat="SYNC_TO_DEVICE" align="END" x="0" y="0" width="195" height="160" alpha="0">
                 <Variant mode="AMBIENT" target="alpha" value="255"/>
-                <Font family="oswald_regular_caps" size="160" weight="THIN" color="#ffffffff"/>
+                <Font family="outfit_regular_caps" size="160" weight="THIN" color="#ffffffff"/>
             </TimeText>
         </DigitalClock>
 
         <!-- 1B. THE COMPLIANT BLINKING COLON LAYER -->
         <!-- Sits perfectly from x=215 to x=235. Splitting the absolute 225px center line -->
-        <Group x="215" y="140" width="20" height="160" name="blinking_colon_group">
+        <Group x="210" y="150" width="30" height="160" name="blinking_colon_group">
 
             <!-- CONDITION 1: When [SECOND] % 2 equals 0, render the visible colon -->
             <Condition>
@@ -31,9 +31,9 @@
                     <Expression name="is_even">([SECOND] % 2) == 0</Expression>
                 </Expressions>
                 <Compare expression="is_even">
-                    <PartText x="0" y="0" width="20" height="160" alpha="255">
+                    <PartText x="0" y="0" width="30" height="160" alpha="255">
                         <Text align="CENTER">
-                            <Font family="oswald_regular_caps" size="160" weight="BOLD" color="#ffffff8f">
+                            <Font family="outfit_regular_caps" size="160" weight="BOLD" color="#ffffff8f">
                                 <Template>:</Template>
                             </Font>
                         </Text>
@@ -42,10 +42,10 @@
             </Condition>
 
             <!-- AMBIENT MODE FALLBACK: Ensures the colon stays statically visible in Always-On display mode -->
-            <PartText x="0" y="0" width="20" height="160" alpha="0">
+            <PartText x="0" y="0" width="30" height="160" alpha="0">
                 <Variant mode="AMBIENT" target="alpha" value="255"/>
                 <Text align="CENTER">
-                    <Font family="oswald_regular_caps" size="160" weight="THIN" color="#ffffffff">
+                    <Font family="outfit_regular_caps" size="160" weight="THIN" color="#ffffffff">
                         <Template>:</Template>
                     </Font>
                 </Text>
@@ -55,23 +55,23 @@
 
         <!-- 1C. DIGITAL CLOCK - MINUTES (Right Anchor) -->
         <!-- Sits from x=235 to x=415 (Width: 180). Left aligned to touch the colon container -->
-        <DigitalClock x="235" y="140" width="180" height="160">
+        <DigitalClock x="240" y="150" width="200" height="160">
             <!-- Active Minute Display -->
-            <TimeText format="mm" align="START" x="0" y="0" width="180" height="160" alpha="255">
+            <TimeText format="mm" align="START" x="0" y="0" width="195" height="160" alpha="255">
                 <Variant mode="AMBIENT" target="alpha" value="0"/>
-                <Font family="oswald_regular_caps" size="160" weight="BOLD"  width="ULTRA_EXPANDED" color="#ffffff8f" />
+                <Font family="outfit_regular_caps" size="160" weight="BOLD"   color="#ffffff8f" />
             </TimeText>
             <!-- Ambient Always-On Minute Display -->
-            <TimeText format="mm" align="START" x="0" y="0" width="180" height="160" alpha="0">
+            <TimeText format="mm" align="START" x="0" y="0" width="195" height="160" alpha="0">
                 <Variant mode="AMBIENT" target="alpha" value="255"/>
-                <Font family="oswald_regular_caps" size="160" weight="THIN" color="#ffffffff"/>
+                <Font family="outfit_regular_caps" size="160" weight="THIN" color="#ffffffff"/>
             </TimeText>
         </DigitalClock>
 
         <!-- 2. DIRECT RENDERING DATE LAYER -->
-        <PartText x="0" y="55" width="450" height="72">
+        <PartText x="0" y="50" width="450" height="84">
             <Text align="CENTER">
-                <Font family="oswald_regular_caps" size="72" weight="BOLD" color="#ffffff8f">
+                <Font family="outfit_regular_caps" size="84" weight="EXTRA_BOLD" color="#ffffff8f">
                     <Template>%s %s<Parameter expression="[DAY]"/><Parameter expression="[DAY_OF_WEEK_S]"/></Template>
                 </Font>
             </Text>
@@ -80,13 +80,13 @@
         <!-- 3. DIRECT BATTERY DISPLAY LAYER -->
         <Group x="135" y="315" width="180" height="45" name="battery_group">
             <!-- A. THE BATTERY ICON -->
-            <PartImage x="20" y="6" width="36" height="36">
+            <PartImage x="14" y="6" width="36" height="36">
                 <Image resource="ic_battery_full_24dp"/>
             </PartImage>
             <!-- B. THE BATTERY PERCENTAGE TEXT -->
-            <PartText x="64" y="0" width="100" height="45">
+            <PartText x="60" y="0" width="100" height="45">
                 <Text align="CENTER">
-                    <Font family="oswald_regular_caps" size="44" weight="NORMAL" color="#ffffff8f">
+                    <Font family="outfit_regular_caps" size="44" weight="EXTRA_BOLD" color="#ffffff8f">
                         <Template>%s%%<Parameter expression="[BATTERY_PERCENT]" /></Template>
                     </Font>
                 </Text>
@@ -108,7 +108,7 @@
                 <Group x="0" y="0" width="300" height="50" name="comp_text_group">
                     <PartText x="0" y="0" width="300" height="50">
                         <Text align="CENTER">
-                            <Font family="oswald_regular_caps" size="44" weight="NORMAL" color="#ffffff8f">
+                            <Font family="outfit_regular_caps" size="54" weight="EXTRA_BOLD" color="#ffffff8f">
                                 <Template>%s<Parameter expression="[COMPLICATION.TEXT]" /></Template>
                             </Font>
                         </Text>
