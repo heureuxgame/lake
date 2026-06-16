@@ -1,0 +1,121 @@
+<?xml version="1.0"?>
+<WatchFace width="450" height="450">
+    <Metadata key="CLOCK_TYPE" value="DIGITAL"/>
+    <Metadata key="PREVIEW_TIME" value="10:08:32"/>
+
+    <!-- THE VISUAL SCENERY CANVAS -->
+    <Scene backgroundColor="#ff000000">
+
+        <!-- 1A. DIGITAL CLOCK - HOURS (Left Anchor) -->
+        <!-- Sits from x=35 to x=215 (Width: 180). Right aligned to touch the colon container -->
+        <DigitalClock x="35" y="140" width="180" height="160">
+            <!-- Active Hour Display -->
+            <TimeText format="hh" hourFormat="SYNC_TO_DEVICE" align="END" x="0" y="0" width="180" height="160" alpha="255">
+                <Variant mode="AMBIENT" target="alpha" value="0"/>
+                <Font family="oswald_regular_caps" size="160" weight="BOLD" width="ULTRA_EXPANDED" color="#ffffff8f"/>
+            </TimeText>
+            <!-- Ambient Always-On Hour Display -->
+            <TimeText format="hh" hourFormat="SYNC_TO_DEVICE" align="END" x="0" y="0" width="180" height="160" alpha="0">
+                <Variant mode="AMBIENT" target="alpha" value="255"/>
+                <Font family="oswald_regular_caps" size="160" weight="THIN" color="#ffffffff"/>
+            </TimeText>
+        </DigitalClock>
+
+        <!-- 1B. THE COMPLIANT BLINKING COLON LAYER -->
+        <!-- Sits perfectly from x=215 to x=235. Splitting the absolute 225px center line -->
+        <Group x="215" y="140" width="20" height="160" name="blinking_colon_group">
+
+            <!-- CONDITION 1: When [SECOND] % 2 equals 0, render the visible colon -->
+            <Condition>
+                <Expressions>
+                    <Expression name="is_even">([SECOND] % 2) == 0</Expression>
+                </Expressions>
+                <Compare expression="is_even">
+                    <PartText x="0" y="0" width="20" height="160" alpha="255">
+                        <Text align="CENTER">
+                            <Font family="oswald_regular_caps" size="160" weight="BOLD" color="#ffffff8f">
+                                <Template>:</Template>
+                            </Font>
+                        </Text>
+                    </PartText>
+                </Compare>
+            </Condition>
+
+            <!-- AMBIENT MODE FALLBACK: Ensures the colon stays statically visible in Always-On display mode -->
+            <PartText x="0" y="0" width="20" height="160" alpha="0">
+                <Variant mode="AMBIENT" target="alpha" value="255"/>
+                <Text align="CENTER">
+                    <Font family="oswald_regular_caps" size="160" weight="THIN" color="#ffffffff">
+                        <Template>:</Template>
+                    </Font>
+                </Text>
+            </PartText>
+
+        </Group>
+
+        <!-- 1C. DIGITAL CLOCK - MINUTES (Right Anchor) -->
+        <!-- Sits from x=235 to x=415 (Width: 180). Left aligned to touch the colon container -->
+        <DigitalClock x="235" y="140" width="180" height="160">
+            <!-- Active Minute Display -->
+            <TimeText format="mm" align="START" x="0" y="0" width="180" height="160" alpha="255">
+                <Variant mode="AMBIENT" target="alpha" value="0"/>
+                <Font family="oswald_regular_caps" size="160" weight="BOLD"  width="ULTRA_EXPANDED" color="#ffffff8f" />
+            </TimeText>
+            <!-- Ambient Always-On Minute Display -->
+            <TimeText format="mm" align="START" x="0" y="0" width="180" height="160" alpha="0">
+                <Variant mode="AMBIENT" target="alpha" value="255"/>
+                <Font family="oswald_regular_caps" size="160" weight="THIN" color="#ffffffff"/>
+            </TimeText>
+        </DigitalClock>
+
+        <!-- 2. DIRECT RENDERING DATE LAYER -->
+        <PartText x="0" y="55" width="450" height="72">
+            <Text align="CENTER">
+                <Font family="oswald_regular_caps" size="72" weight="BOLD" color="#ffffff8f">
+                    <Template>%s %s<Parameter expression="[DAY]"/><Parameter expression="[DAY_OF_WEEK_S]"/></Template>
+                </Font>
+            </Text>
+        </PartText>
+
+        <!-- 3. DIRECT BATTERY DISPLAY LAYER -->
+        <Group x="135" y="315" width="180" height="45" name="battery_group">
+            <!-- A. THE BATTERY ICON -->
+            <PartImage x="20" y="6" width="36" height="36">
+                <Image resource="ic_battery_full_24dp"/>
+            </PartImage>
+            <!-- B. THE BATTERY PERCENTAGE TEXT -->
+            <PartText x="64" y="0" width="100" height="45">
+                <Text align="CENTER">
+                    <Font family="oswald_regular_caps" size="44" weight="NORMAL" color="#ffffff8f">
+                        <Template>%s%%<Parameter expression="[BATTERY_PERCENT]" /></Template>
+                    </Font>
+                </Text>
+            </PartText>
+        </Group>
+
+        <!-- 4. BOTTOM SHORT TEXT COMPLICATION SLOT -->
+        <ComplicationSlot
+            slotId="2"
+            supportedTypes="SHORT_TEXT"
+            x="75" y="370" width="300" height="50"
+            displayName="Bottom Complication"
+            isCustomizable="TRUE">
+            <DefaultProviderPolicy
+                defaultSystemProvider="WATCH_BATTERY"
+                defaultSystemProviderType="SHORT_TEXT" />
+            <BoundingBox x="0" y="0" width="300" height="50" />
+            <Complication type="SHORT_TEXT">
+                <Group x="0" y="0" width="300" height="50" name="comp_text_group">
+                    <PartText x="0" y="0" width="300" height="50">
+                        <Text align="CENTER">
+                            <Font family="oswald_regular_caps" size="44" weight="NORMAL" color="#ffffff8f">
+                                <Template>%s<Parameter expression="[COMPLICATION.TEXT]" /></Template>
+                            </Font>
+                        </Text>
+                    </PartText>
+                </Group>
+            </Complication>
+        </ComplicationSlot>
+
+    </Scene>
+</WatchFace>
