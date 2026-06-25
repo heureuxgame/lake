@@ -1,21 +1,21 @@
 <?xml version="1.0"?>
 <WatchFace width="450" height="450">
     <Metadata key="CLOCK_TYPE" value="DIGITAL"/>
-    <Metadata key="PREVIEW_TIME" value="10:08:32"/>
+    <Metadata key="PREVIEW_TIME" value="00:00:32"/>
 
     <!-- THE VISUAL SCENERY CANVAS -->
     <Scene backgroundColor="#ff000000">
 
         <!-- 1A. DIGITAL CLOCK - HOURS (Left Anchor) -->
         <!-- Sits from x=35 to x=215 (Width: 180). Right aligned to touch the colon container -->
-        <DigitalClock x="10" y="150" width="200" height="160">
+        <DigitalClock x="0" y="150" width="210" height="160">
             <!-- Active Hour Display -->
-            <TimeText format="hh" hourFormat="SYNC_TO_DEVICE" align="END" x="0" y="0" width="195" height="160" alpha="255">
+            <TimeText format="hh" hourFormat="SYNC_TO_DEVICE" align="END" x="0" y="0" width="205" height="160" alpha="255">
                 <Variant mode="AMBIENT" target="alpha" value="0"/>
                 <Font family="outfit_regular_caps" size="160" weight="BOLD"  color="#ffffff8f"/>
             </TimeText>
             <!-- Ambient Always-On Hour Display -->
-            <TimeText format="hh" hourFormat="SYNC_TO_DEVICE" align="END" x="0" y="0" width="195" height="160" alpha="0">
+            <TimeText format="hh" hourFormat="SYNC_TO_DEVICE" align="END" x="0" y="0" width="205" height="160" alpha="0">
                 <Variant mode="AMBIENT" target="alpha" value="255"/>
                 <Font family="outfit_regular_caps" size="160" weight="THIN" color="#ffffffff"/>
             </TimeText>
@@ -55,14 +55,14 @@
 
         <!-- 1C. DIGITAL CLOCK - MINUTES (Right Anchor) -->
         <!-- Sits from x=235 to x=415 (Width: 180). Left aligned to touch the colon container -->
-        <DigitalClock x="240" y="150" width="200" height="160">
+        <DigitalClock x="240" y="150" width="210" height="160">
             <!-- Active Minute Display -->
             <TimeText format="mm" align="START" x="0" y="0" width="195" height="160" alpha="255">
                 <Variant mode="AMBIENT" target="alpha" value="0"/>
                 <Font family="outfit_regular_caps" size="160" weight="BOLD"   color="#ffffff8f" />
             </TimeText>
             <!-- Ambient Always-On Minute Display -->
-            <TimeText format="mm" align="START" x="0" y="0" width="195" height="160" alpha="0">
+            <TimeText format="mm" align="START" x="0" y="0" width="205" height="160" alpha="0">
                 <Variant mode="AMBIENT" target="alpha" value="255"/>
                 <Font family="outfit_regular_caps" size="160" weight="THIN" color="#ffffffff"/>
             </TimeText>
