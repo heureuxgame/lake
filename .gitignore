@@ -1,1 +1,40 @@
+# Gradle build artifacts and caches
+.gradle/
 build/
+/*/build/
+*.kotlin/
+
+# Local developer machine paths (Contains your local Android SDK location)
+local.properties
+
+# Android Studio & IntelliJ IDEA system files
+.idea/caches/
+.idea/libraries/
+.idea/modules.xml
+.idea/workspace.xml
+.idea/gradle.xml
+.idea/usage.statistics.xml
+.idea/dictionaries/
+.idea/shelf/
+*.iml
+
+# Compiled watch face binaries (Never commit production packages)
+*.apk
+*.aab
+*.ap_
+*.dex
+*.class
+output-metadata.json
+
+# Private Security Keys / Signing Keystores 
+# (Crucial: Keep your watch face release keys off GitHub!)
+*.jks
+*.keystore
+
+# Log files and crash dumps
+*.log
+*.hprof
+
+# OS specific hidden files
+.DS_Store
+Thumbs.db
